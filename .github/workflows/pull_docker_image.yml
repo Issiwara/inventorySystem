@@ -48,7 +48,8 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script: |
             sudo apt-get update
-            sudo apt-get install -y docker.io
+            curl -fsSL https://test.docker.com -o test-docker.sh
+            sudo sh test-docker.sh
             sudo docker stop $(sudo docker ps -q)
             sudo docker rm $(sudo docker ps -aq)
             sudo docker run -d -p 80:80 issiwara/inventory_sys_front
